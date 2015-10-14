@@ -14,9 +14,10 @@ public class MineWalker {
 		Entity[][] playboard;
 		int stepX = 0, stepY = 0;
 		int nextX = 0, nextY = 0;
-		boolean gameover = false;
+		boolean gameover;
 		
 		while (play.equalsIgnoreCase("yes")) {
+			gameover = false;
 			System.out.println("input the size of board, the valid size could be 2 to 10");
 			Scanner input = new Scanner(System.in);
 			int boardSize = input.nextInt();
@@ -38,6 +39,7 @@ public class MineWalker {
 					// quit the game
 					if (stepX == 9) {
 						System.out.println("GAME OVER!");
+						gameover = true;
 						break;
 					}
 					
@@ -62,9 +64,9 @@ public class MineWalker {
 						System.out.println("Boom!");
 						gameover = true;
 					} else if (playboard[nextY][nextX] == Entity.ICECREAM) {
-						// get the ice cream
+						// get the ice cream, game over.
 						board.move(nextX, nextY);
-						System.out.println("Hey, you did it!");
+						System.out.println("Hey, you made it!");
 						board.printBoard();
 						gameover = true;
 					} else {

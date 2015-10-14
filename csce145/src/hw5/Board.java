@@ -71,7 +71,6 @@ public class Board {
 	
 	// move
 	public void move(int nextX, int nextY) {
-		System.out.println("move to " + nextX + ", " + nextY);
 		// remove the player from original location
 		this.playground[playerY][playerX] = Entity.EMPTY;
 		// move the player to new location
@@ -83,7 +82,6 @@ public class Board {
 	
 	// print board status
 	public void printBoard() {
-//		int size = this.playground[0].length;
 		for (int col = 0; col < this.size; col++) {
 			for (int row = 0; row < this.size; row++) {
 				// in row
