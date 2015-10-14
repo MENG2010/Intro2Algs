@@ -36,20 +36,22 @@ public class BubbleSort <T extends Comparable<T>> {
 			}
 		}
 		
-		// implement with WHILE-LOOP
-//		boolean swapped = true;
-//		int length = unsorted.length;
+		// implement in WHILE-LOOP
+		/*
+		boolean swapped = true;
+		int length = unsorted.length;
 		
-//		while (swapped) {
-//			swapped = false;
-//			for (int i = 1; i < length; i++) {
-//				if (unsorted[i].compareTo(unsorted[i - 1]) < 0) {
-//					swap(i, i - 1, unsorted);
-//					swapped = true;
-//				}
-//			}
-//			length--;
-//		}
+		while (swapped) {
+			swapped = false;
+			for (int i = 1; i < length; i++) {
+				if (unsorted[i].compareTo(unsorted[i - 1]) < 0) {
+					swap(i, i - 1, unsorted);
+					swapped = true;
+				}
+			}
+			length--;
+		}
+		*/
 		return unsorted;
 	}
 	
