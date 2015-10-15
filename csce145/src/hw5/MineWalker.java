@@ -60,7 +60,7 @@ public class MineWalker {
 					nextX = board.getNextX(stepX);
 					nextY = board.getNextY(stepY);
 					if (playboard[nextY][nextX] == Entity.MINE) {
-						// step into a mine, game over.
+						// hit a mine, game over.
 						System.out.println("Boom!");
 						gameover = true;
 					} else if (playboard[nextY][nextX] == Entity.ICECREAM) {
