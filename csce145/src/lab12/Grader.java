@@ -2,6 +2,11 @@ package lab12;
 
 import java.util.Scanner;
 
+/**
+ * 
+ * @author meng (y.meng201011@gmail.com)
+ *
+ */
 public class Grader {
 	private double quiz1;
 	private double quiz2;
