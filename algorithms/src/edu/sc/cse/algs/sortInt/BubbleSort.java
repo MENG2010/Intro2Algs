@@ -7,7 +7,7 @@ package edu.sc.cse.algs.sortInt;
  */
 public class BubbleSort {
 	
-	public int[] sortAscending(int[] unsorted) {
+	public int[] sort(int[] unsorted) {
 		for (int i=0; i<unsorted.length; i++) {
 			for (int j=0; j<i; j++) {
 				if (unsorted[j] > unsorted[i]) {
@@ -21,17 +21,4 @@ public class BubbleSort {
 		return unsorted;
 	}
 	
-	public int[] sortDescending(int[] unsorted) {
-		for (int i=0; i<unsorted.length; i++) {
-			for (int j=0; j<i; j++) {
-				if (unsorted[j] < unsorted[i]) {
-					int tmp = unsorted[i];
-					unsorted[i] = unsorted[j];
-					unsorted[j] = tmp;
-				}
-			}
-		}
-		
-		return unsorted;
-	}
 }

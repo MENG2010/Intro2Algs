@@ -1,7 +1,12 @@
 package edu.sc.cse.algs.sortInt;
 
+/**
+ * 
+ * @author meng (y.meng201011@gmail.com)
+ *
+ */
 public class ShellSort {
-	public int[] sortAscending(int[] unsorted) {
+	public int[] sort(int[] unsorted) {
 		int tmp, k;
 		
 		for (int gap=unsorted.length/2; gap>0; gap/=2) {
@@ -45,7 +50,7 @@ public class ShellSort {
 		}
 		System.out.println();
 		
-		int[] sorted = sort.sortAscending(unsorted);
+		int[] sorted = sort.sort(unsorted);
 		
 		for (int i=0; i<sorted.length; i++) {
 			System.out.print(sorted[i] + " ");

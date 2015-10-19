@@ -6,7 +6,7 @@ package edu.sc.cse.algs.sortInt;
  *
  */
 public class SelectionSort {
-	public int[] sortAscending(int[] unsorted) {
+	public int[] sort(int[] unsorted) {
 		int tmp, index;
 		
 		for (int i=0; i<unsorted.length; i++) {

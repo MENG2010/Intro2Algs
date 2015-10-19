@@ -6,7 +6,7 @@ package edu.sc.cse.algs.sortInt;
  *
  */
 public class InsertionSort {
-	public int[] sortAscending(int[] unsorted) {
+	public int[] sort1(int[] unsorted) {
 		int tmp;
 		
 		for (int i=1; i<unsorted.length; i++) {
@@ -24,7 +24,7 @@ public class InsertionSort {
 		return unsorted;
 	}
 	
-	public int[] sortAscending2(int[] unsorted) {
+	public int[] sort2(int[] unsorted) {
 		int tmp, j = 0;
 		
 		for (int i=1; i<unsorted.length; i++) {
@@ -52,7 +52,7 @@ public class InsertionSort {
 		}
 		System.out.println();
 		
-		int[] sorted = sort.sortAscending2(unsorted);
+		int[] sorted = sort.sort2(unsorted);
 		
 		for (int i=0; i<sorted.length; i++) {
 			System.out.print(sorted[i] + " ");

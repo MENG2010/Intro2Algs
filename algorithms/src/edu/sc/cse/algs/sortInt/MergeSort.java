@@ -4,8 +4,6 @@ public class MergeSort {
 	private int[] numbers;
 	private int[] assistant;
 	
-//	private int length;
-	
 	public void sort(int[] unsorted) {
 		this.numbers = unsorted;
 		int len = unsorted.length;
