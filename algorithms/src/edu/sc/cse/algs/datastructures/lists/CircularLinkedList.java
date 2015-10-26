@@ -1,19 +1,13 @@
 package edu.sc.cse.algs.datastructures.lists;
-
 /**
- * Implement doubly linked list.
+ * Implement Circular Linked List
  * @author meng (gmail: y(dot)meng201011)
- *
- * @param <T> comparable object
+ *@param <T> comparable object
  */
-public class DoublyLinkedList<T>  {
-	/*
-	 * node object in the list
-	 */
+public class CircularLinkedList<T> {
 	class Node<T> implements Comparable<T> {
-		private Node<T> next;
-		private Node<T> prev;
 		private T data;
+		private Node<T> next;
 		
 		public void setData(T data) {
 			this.data = data;
@@ -23,20 +17,12 @@ public class DoublyLinkedList<T>  {
 			this.next = node;
 		}
 		
-		public void setPrev(Node<T> node) {
-			this.prev = node;
-		}
-		
 		public T getData() {
 			return this.data;
 		}
 		
 		public Node<T> getNext() {
 			return this.next;
-		}
-		
-		public Node<T> getPrev() {
-			return this.prev;
 		}
 		
 		@Override
@@ -52,18 +38,106 @@ public class DoublyLinkedList<T>  {
 	private Node<T> head;
 	private Node<T> tail;
 	
-	public DoublyLinkedList() {
+	public CircularLinkedList() {
 		head = null;
 		tail = null;
 	}
 	
-	/**
-	 * 
-	 * @return whether the list is empty
-	 */
 	public boolean isEmpty() {
 		return (head == null);
 	}
+	
+	/**
+	 * 
+	 * @param value
+	 * @return whether or not the list contains given value
+	 */
+	public boolean contain(T value) {
+		Node<T> iterator = head;
+		boolean found = false;
+		
+		while (iterator != tail && !found) {
+			if (iterator.data == value) {
+				found = true;
+			}
+			iterator = iterator.next;
+		}
+		return found;
+	}
+	
+	/**
+	 * Insert a new node with given  value before the head.
+	 * @param value
+	 */
+	public void insert(T value) {
+		Node<T> node = new Node<T>();
+		node.setData(value);
+		
+		if (head == null) {
+			// list was empty
+			head = tail = node;
+			tail.setNext(head);
+			head.setNext(tail);
+		} else {
+			// list was not empty
+			node.setNext(head);
+			head = node;
+			tail.setNext(head);
+		}
+	}
+	
+	/**
+	 * To delete nodes that contain given value
+	 * @param value
+	 */
+	public void delete(T value) {
+		if (head == null) {
+			// empty list
+			System.err.println("\n>>> The list is underflowed!");
+			return;
+		} else if (!this.contain(value)) {
+			// list does not contain the specific value
+			System.err.println("\n>>> The list does not contain " + value);
+			return;
+		}  else {
+			// delete a node from list
+			Node<T> iterator = head;
+			Node<T> prevNode = null;
+			
+			while (iterator != null && this.contain(value)) {
+				if (iterator.data == value) {
+					// found the node
+					if (head == tail) {
+						// delete the only one node
+						head = tail = null;
+						head.setNext(null);
+						tail.setNext(null);
+						return;
+					}  else if (prevNode == null) {
+						// delete the head
+						head = head.next;
+						tail.setNext(head);
+					} else {
+						// delete a node
+						prevNode.setNext(iterator.next);
+					}					
+				} else {
+					// not found yet
+					prevNode = iterator;
+				}
+				// next node
+				iterator = iterator.next;
+				
+				// print out the process
+//				if (iterator != null) {
+//					System.out.println( "head = " + this.head.data + "; tail = " + this.tail.data
+//							 + "; \t"
+//							+ iterator.data + ".next = "
+//							+ (iterator.next != null ? iterator.next.data : "null"));
+//				}
+			}
+		}
+	}// end of delete
 	
 	/**
 	 * 
@@ -73,7 +147,7 @@ public class DoublyLinkedList<T>  {
 		int count = 0;
 		Node<T> iterator = head;
 		
-		while (iterator != null) {
+		while (iterator != null && iterator != tail) {
 			count++;
 			iterator = iterator.next;
 		}
@@ -81,119 +155,23 @@ public class DoublyLinkedList<T>  {
 	}
 	
 	/**
-	 * Check whether given value is in list
-	 * @param value
-	 * @return true / false for given value is in list or not
-	 */
-	public boolean contain(T value) {
-		Node<T> iterator = head;
-		boolean found = false;
-		
-		while (iterator != null) {
-			if (iterator.data == value) {
-				found = true;
-				break;
-			} else {
-				iterator = iterator.next;
-			}
-		}
-		return found;
-	}
-	
-	/**
-	 * Insert a node to the head of list given the value.
-	 * @param value
-	 */
-	public void insert(T value) {
-		Node<T> node = new Node<T> ();
-		node.setData(value);
-		
-		if (head == null) {
-			head = tail = node;
-			head.setNext(tail);
-			head.setPrev(null);
-			tail.setPrev(head);
-			tail.setNext(null);
-		} else {
-			node.setNext(head);
-			head.setPrev(node);
-			head = node;
-		}
-	}
-	
-	/**
-	 * Delete nodes have specific value.
-	 * @param value
-	 */
-	public void delete(T value) {
-		if (head == null) {
-			// empty list
-			System.err.println("\n>>> List is underflowed!");
-			return;
-		} else if (!this.contain(value))  {
-			// value to delete is not in the list
-			System.err.println("\n>>> The list does not contain " + value);
-			return;
-		} else {
-			// iterator
-			Node<T> iterator = head;
-			
-			// iterate though the list
-			while (iterator != null) {
-				// found the node
-				if (iterator.data == value) {
-					if (head == tail) {
-						// delete the last node from list
-						head = tail = null;
-						return;
-					} 
-					//  list contains multiple elements
-					if (iterator == head) {
-						// delete head
-						head = iterator.next;
-						head.setPrev(null);
-					} else if (iterator == tail) {
-						// delete tail
-						tail = iterator.prev;
-						tail.setNext(null);
-					} else {
-						// delete a node from middle
-						iterator.prev.setNext(iterator.next);
-						iterator.next.setPrev(iterator.prev);
-					}
-				} // end of deleting
-				// next node
-				iterator = iterator.next;
-				
-				// print out the process
-				if (iterator != null) {
-					System.out.println(iterator.data + ".prev = " 
-							+ (iterator.prev != null ? iterator.prev.data : "null")
-							 + "; \t"
-							+ iterator.data + ".next = "
-							+ (iterator.next != null ? iterator.next.data : "null"));
-				}
-			}		
-		}
-	}
-	
-	/**
-	 * Traverse list from head to tail
+	 * Traverse the list from head to tail
 	 */
 	public void traverse() {
 		Node<T> iterator = head;
 		
-		while (iterator != null) {
+		while (iterator != null && iterator != tail) {
 			System.out.print(iterator.data + " -> ");
 			iterator = iterator.next;
 		}
 		System.out.println("(End)");
 	}
 	
+	
 	// test
 	public static void main(String[] args) {
 		// list with integers
-		DoublyLinkedList<Integer> il = new DoublyLinkedList<Integer> ();
+		CircularLinkedList<Integer> il = new CircularLinkedList<Integer> ();
 		System.out.println("il is empty? " + il.isEmpty());
 		il.insert(4);
 		il.insert(3);
@@ -208,10 +186,11 @@ public class DoublyLinkedList<T>  {
 		il.traverse();
 		
 		// list with strings
-		DoublyLinkedList<String> sl = new DoublyLinkedList<String> ();
+		CircularLinkedList<String> sl = new CircularLinkedList<String> ();
 		sl.insert("a");
 		sl.insert("a");
 		sl.insert("b");
+		sl.insert("a");
 		sl.insert("a");
 		sl.insert("c");
 		sl.insert("d");
@@ -222,11 +201,7 @@ public class DoublyLinkedList<T>  {
 		sl.delete("c");
 		sl.delete("f");
 		sl.delete("a");
-		sl.delete("b");
-		sl.delete("d");
-		sl.delete("e");
 		System.out.println("sl.size = " + sl.getSize());
 		sl.traverse();
-		
 	}
 }
