@@ -49,7 +49,7 @@ public class SinglyLinkedList<T> {
 		this.tail = null;
 	}
 	
-	public int getSize() {
+	public int size() {
 		int count = 0;
 		Node<T> iterator = head;
 		
@@ -112,7 +112,7 @@ public class SinglyLinkedList<T> {
 		}
 	}
 	
-	public boolean contain(T value) {
+	public boolean contains(T value) {
 		boolean found = false;
 		Node<T> iterator = head;
 		
@@ -126,6 +126,21 @@ public class SinglyLinkedList<T> {
 		return found;
 	}
 	
+	@Override
+	public String toString() {
+		String str = "";
+		Node<T> iterator = head;
+		while (iterator != null) {
+			str += iterator.data + " -> ";
+			iterator = iterator.next;
+		}
+		str += "(End)";
+		return str;
+	}
+	
+	/* 
+	 * **** Replaced traverse() with toString(). ****
+	 * 
 	public void traverse() {
 		Node<T> iterator = head;
 		while (iterator != null) {
@@ -134,6 +149,7 @@ public class SinglyLinkedList<T> {
 		}
 		System.out.println("(End)");
 	}
+	*/
 	
 	// test
 	public static void main(String[] args) {
@@ -144,13 +160,15 @@ public class SinglyLinkedList<T> {
 		il.insert(3);
 		il.insert(2);
 		il.insert(1);
-		il.traverse();
-		System.out.println("il.size = " + il.getSize());
-		System.out.println("il contains 3? " + il.contain(3));
-		System.out.println("il contains 9? " + il.contain(9));
+//		il.traverse();
+		System.out.println(il.toString());
+		System.out.println("il.size = " + il.size());
+		System.out.println("il contains 3? " + il.contains(3));
+		System.out.println("il contains 9? " + il.contains(9));
 		il.delete(3);
 		il.delete(1);
-		il.traverse();
+//		il.traverse();
+		System.out.println(il.toString());
 		
 		// list with strings
 		SinglyLinkedList<String> sl = new SinglyLinkedList<String> ();
@@ -160,13 +178,15 @@ public class SinglyLinkedList<T> {
 		sl.insert("a");
 		sl.insert("c");
 		sl.insert("d");
-		sl.traverse();
+//		sl.traverse();
+		System.out.println(sl.toString());
 		System.out.println("sl is empty()? " + sl.isEmpty());
-		System.out.println("sl contains c? " + sl.contain("c"));
-		System.out.println("sl contains x? " + sl.contain("x"));	
+		System.out.println("sl contains c? " + sl.contains("c"));
+		System.out.println("sl contains x? " + sl.contains("x"));	
 		sl.delete("c");
 		sl.delete("a");
-		System.out.println("sl.size = " + sl.getSize());
-		sl.traverse();
+		System.out.println("sl.size = " + sl.size());
+//		sl.traverse();
+		System.out.println(sl.toString());
 	}
 }

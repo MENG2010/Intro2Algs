@@ -69,7 +69,7 @@ public class DoublyLinkedList<T>  {
 	 * 
 	 * @return number of nodes in the list
 	 */
-	public int getSize() {
+	public int size() {
 		int count = 0;
 		Node<T> iterator = head;
 		
@@ -85,7 +85,7 @@ public class DoublyLinkedList<T>  {
 	 * @param value
 	 * @return true / false for given value is in list or not
 	 */
-	public boolean contain(T value) {
+	public boolean contains(T value) {
 		Node<T> iterator = head;
 		boolean found = false;
 		
@@ -130,7 +130,7 @@ public class DoublyLinkedList<T>  {
 			// empty list
 			System.err.println("\n>>> List is underflowed!");
 			return;
-		} else if (!this.contain(value))  {
+		} else if (!this.contains(value))  {
 			// value to delete is not in the list
 			System.err.println("\n>>> The list does not contain " + value);
 			return;
@@ -177,9 +177,26 @@ public class DoublyLinkedList<T>  {
 		}
 	}
 	
+	@Override
+	public String toString() {
+		String str = "";
+		Node<T> iterator = head;
+		
+		while (iterator != null) {
+			str += iterator.data + " -> ";
+			iterator = iterator.next;
+		}
+		str += "(End)";
+		
+		return str;
+	}
+	
 	/**
 	 * Traverse list from head to tail
 	 */
+	/*
+	 * **** Replace traverse() with toString() ****
+	 * 
 	public void traverse() {
 		Node<T> iterator = head;
 		
@@ -189,6 +206,7 @@ public class DoublyLinkedList<T>  {
 		}
 		System.out.println("(End)");
 	}
+	*/
 	
 	// test
 	public static void main(String[] args) {
@@ -199,13 +217,15 @@ public class DoublyLinkedList<T>  {
 		il.insert(3);
 		il.insert(2);
 		il.insert(1);
-		il.traverse();
-		System.out.println("il.size = " + il.getSize());
-		System.out.println("il contains 3? " + il.contain(3));
-		System.out.println("il contains 9? " + il.contain(9));
+//		il.traverse();
+		System.out.println(il.toString());
+		System.out.println("il.size = " + il.size());
+		System.out.println("il contains 3? " + il.contains(3));
+		System.out.println("il contains 9? " + il.contains(9));
 		il.delete(3);
 		il.delete(1);
-		il.traverse();
+//		il.traverse();
+		System.out.println(il.toString());
 		
 		// list with strings
 		DoublyLinkedList<String> sl = new DoublyLinkedList<String> ();
@@ -215,18 +235,19 @@ public class DoublyLinkedList<T>  {
 		sl.insert("a");
 		sl.insert("c");
 		sl.insert("d");
-		sl.traverse();
+//		sl.traverse();
+		System.out.println(sl.toString());
 		System.out.println("sl is empty()? " + sl.isEmpty());
-		System.out.println("sl contains c? " + sl.contain("c"));
-		System.out.println("sl contains x? " + sl.contain("x"));	
+		System.out.println("sl contains c? " + sl.contains("c"));
+		System.out.println("sl contains x? " + sl.contains("x"));	
 		sl.delete("c");
 		sl.delete("f");
 		sl.delete("a");
 		sl.delete("b");
 		sl.delete("d");
 		sl.delete("e");
-		System.out.println("sl.size = " + sl.getSize());
-		sl.traverse();
-		
+		System.out.println("sl.size = " + sl.size());
+//		sl.traverse();
+		System.out.println(sl.toString());
 	}
 }

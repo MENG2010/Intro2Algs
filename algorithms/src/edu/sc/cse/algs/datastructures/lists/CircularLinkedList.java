@@ -52,7 +52,7 @@ public class CircularLinkedList<T> {
 	 * @param value
 	 * @return whether or not the list contains given value
 	 */
-	public boolean contain(T value) {
+	public boolean contains(T value) {
 		Node<T> iterator = head;
 		boolean found = false;
 		
@@ -95,7 +95,7 @@ public class CircularLinkedList<T> {
 			// empty list
 			System.err.println("\n>>> The list is underflowed!");
 			return;
-		} else if (!this.contain(value)) {
+		} else if (!this.contains(value)) {
 			// list does not contain the specific value
 			System.err.println("\n>>> The list does not contain " + value);
 			return;
@@ -104,7 +104,7 @@ public class CircularLinkedList<T> {
 			Node<T> iterator = head;
 			Node<T> prevNode = null;
 			
-			while (iterator != null && this.contain(value)) {
+			while (iterator != null && this.contains(value)) {
 				if (iterator.data == value) {
 					// found the node
 					if (head == tail) {
@@ -143,7 +143,7 @@ public class CircularLinkedList<T> {
 	 * 
 	 * @return number of nodes in the list
 	 */
-	public int getSize() {
+	public int size() {
 		int count = 0;
 		Node<T> iterator = head;
 		
@@ -154,9 +154,26 @@ public class CircularLinkedList<T> {
 		return count;
 	}
 	
+	
+	@Override
+	public String toString() {
+		String str = "";
+		Node<T> iterator = head;
+		
+		while (iterator != null && iterator != tail) {
+			str += iterator.data + " -> ";
+			iterator = iterator.next;
+		}
+		str += "(End)";
+		return str;
+	}
+	
 	/**
 	 * Traverse the list from head to tail
 	 */
+	/*
+	 * **** Replace traverse() with toString() ****
+	*
 	public void traverse() {
 		Node<T> iterator = head;
 		
@@ -166,7 +183,7 @@ public class CircularLinkedList<T> {
 		}
 		System.out.println("(End)");
 	}
-	
+	*/
 	
 	// test
 	public static void main(String[] args) {
@@ -177,13 +194,15 @@ public class CircularLinkedList<T> {
 		il.insert(3);
 		il.insert(2);
 		il.insert(1);
-		il.traverse();
-		System.out.println("il.size = " + il.getSize());
-		System.out.println("il contains 3? " + il.contain(3));
-		System.out.println("il contains 9? " + il.contain(9));
+//		il.traverse();
+		System.out.println(il.toString());
+		System.out.println("il.size = " + il.size());
+		System.out.println("il contains 3? " + il.contains(3));
+		System.out.println("il contains 9? " + il.contains(9));
 		il.delete(3);
 		il.delete(1);
-		il.traverse();
+//		il.traverse();
+		System.out.println(il.toString());
 		
 		// list with strings
 		CircularLinkedList<String> sl = new CircularLinkedList<String> ();
@@ -194,14 +213,16 @@ public class CircularLinkedList<T> {
 		sl.insert("a");
 		sl.insert("c");
 		sl.insert("d");
-		sl.traverse();
+//		sl.traverse();
+		System.out.println(sl.toString());
 		System.out.println("sl is empty()? " + sl.isEmpty());
-		System.out.println("sl contains c? " + sl.contain("c"));
-		System.out.println("sl contains x? " + sl.contain("x"));	
+		System.out.println("sl contains c? " + sl.contains("c"));
+		System.out.println("sl contains x? " + sl.contains("x"));	
 		sl.delete("c");
 		sl.delete("f");
 		sl.delete("a");
-		System.out.println("sl.size = " + sl.getSize());
-		sl.traverse();
+		System.out.println("sl.size = " + sl.size());
+//		sl.traverse();
+		System.out.println(sl.toString());
 	}
 }
