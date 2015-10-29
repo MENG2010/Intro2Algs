@@ -19,7 +19,7 @@ public class Diamond extends ShapeBasics implements DiamondInterface{
 		this.width = width;
 	}
 	
-	// accessors and mutators
+	// a
 	public void setWidth(int width) {
 		if (width < 0) {
 			System.err.println("width cannot be negative!");
@@ -45,8 +45,7 @@ public class Diamond extends ShapeBasics implements DiamondInterface{
 	public int getWidth() {
 		return this.width;
 	}
-	
-	// draw diamond
+
 	public void drawHere() {
 		skipSpaces(getOffset());
 		drawTopV();
@@ -60,7 +59,7 @@ public class Diamond extends ShapeBasics implements DiamondInterface{
 		
 		// draw the topV row by row
 		for (int row = startpoint; row <= endpoint; row++) {
-			drawOneRow((endpoint - row), row * 2);
+			drawOneRow(true, (endpoint - row), row * 2 - 1);
 			System.out.println();
 		}
 	}
@@ -75,15 +74,16 @@ public class Diamond extends ShapeBasics implements DiamondInterface{
 		
 		// draw the bottomV row by row
 		for (; row <= endpoint; row++) {
-			drawOneRow((row - startpoint), (endpoint - row) * 2);
+			drawOneRow(false, (row - startpoint), (endpoint - row) * 2 - 1);
 			System.out.println();
 		}
 	}
 	
-	private void drawOneRow(int skipBefore, int skipAfter) {
-		if (skipAfter == 0) {
+	private void drawOneRow(boolean inTopV, int skipBefore, int skipAfter) {
+		if (skipAfter <= 0) {
 			// only one node to print
 			// the topmost row and the bottom-most row
+			skipBefore = inTopV ? skipBefore - 1 : skipBefore;
 			skipSpaces(skipBefore);
 			System.out.print("*");
 		} else {
