@@ -9,6 +9,7 @@ public class Diamond extends ShapeBasics implements DiamondInterface{
 	private int width;
 	private int offset;
 	
+	// constructors
 	public Diamond() {
 		this.width = 0;
 	}
@@ -18,6 +19,7 @@ public class Diamond extends ShapeBasics implements DiamondInterface{
 		this.width = width;
 	}
 	
+	// accessors and mutators
 	public void setWidth(int width) {
 		if (width < 0) {
 			System.err.println("width cannot be negative!");
@@ -27,8 +29,26 @@ public class Diamond extends ShapeBasics implements DiamondInterface{
 		this.width = width;
 	}
 	
-
+	public void setOffset(int offset) {
+		if (offset < 0) {
+			System.err.println("offset cannot be negative!");
+			System.exit(0);
+		}
+		
+		super.setOffset(offset);;
+	}
+	
+	public int getOffset() {
+		return super.getOffset();
+	}
+	
+	public int getWidth() {
+		return this.width;
+	}
+	
+	// draw diamond
 	public void drawHere() {
+		skipSpaces(getOffset());
 		drawTopV();
 		drawBottomV();
 		
