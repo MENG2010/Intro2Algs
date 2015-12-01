@@ -38,7 +38,6 @@ public class AEIOU {
 		String state = "00000";
 		String sequence = ""; // current matched sequence
 		char pointer; //  current char in given string
-		char character;
 		
 		for (int i = 0; i < longString.length(); i++) {
 			pointer = longString.toLowerCase().charAt(i);
