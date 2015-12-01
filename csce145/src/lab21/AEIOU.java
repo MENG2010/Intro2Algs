@@ -1,6 +1,19 @@
 package lab21;
 /**
  * @author meng
+ * 
+ * Purpose: 						ALARM!!!!!
+ * 			There are moles in the space craft and we must pick all of them out,
+ * 			without hurting any innocent people. Otherwise, our enemy will win!
+ * 			All we know about the moles is that
+ * 			each of them carries 5 secret energy cubes 'A', 'E', 'I', 'O', and 'U'.
+ * 			They are really smart, altering cubes' cases (i.e., case insensitive),
+ * 									mixing cubes with non-vowel characters, spaces, numbers, etc..
+ * 			The ONLY THING MATTERS is that the 5 cubes must occurs exactly in alphabet order!!!!!
+ * 
+ * 			QUICK!!! Uncover all the moles before it is too late!
+ * 
+ ********************************* GAME ON ********************************************
  */
 import java.io.File;
 import java.util.Scanner;
@@ -43,7 +56,7 @@ public class AEIOU {
 			pointer = longString.toLowerCase().charAt(i);
 			sequence += longString.charAt(i);
 			
-			if ('a' == pointer) { // every time when get an "A", the seq needs to start over
+			if ('a' == pointer) { // every time when get an "A", the state needs to start over
 					state = "10000"; // matching "A"
 			} else if ('1' == state.charAt(0)) { // matched "A"
 				if ('0' == state.charAt(1)) { // matched "A"
@@ -51,8 +64,7 @@ public class AEIOU {
 						state = "11000"; // matching "AE"
 					} else if ('i' == pointer ||
 							'o' == pointer ||
-							'u' == pointer) { // get {A, E, I, O, U} - {A, E}
-						// if an "A" comes in, seq state should stay "10000" since "A" is matched!!!
+							'u' == pointer) { // get x in {A, E, I, O, U} - {A, E}
 						state = "00000"; // disordered, reset
 						sequence = ""; // reset
 					}
@@ -61,7 +73,7 @@ public class AEIOU {
 						state = "11100"; // matching "AEI"
 					} else if ('e' == pointer ||
 							'o' == pointer ||
-							'u' == pointer) { // get {A, E, I, O, U} - {A, I}
+							'u' == pointer) { // get x in {A, E, I, O, U} - {A, I}
 						state = "00000"; // disordered, reset
 						sequence = ""; // reset
 					}
@@ -70,7 +82,7 @@ public class AEIOU {
 						state = "11110"; // matching "AEIO"
 					} else if ('e' == pointer ||
 							'i' == pointer ||
-							'u' == pointer) { // get {A, E, I, O, U} - {A, O}
+							'u' == pointer) { // get x in {A, E, I, O, U} - {A, O}
 						state = "00000"; // disordered, reset
 						sequence = ""; // reset
 					}
@@ -83,13 +95,12 @@ public class AEIOU {
 						state = "00000"; // reset to start over the long journey ...
 					} else if ('e' == pointer ||
 							'i' == pointer ||
-							'o' == pointer) { // get {A, E, I, O, U} - {A, U}
+							'o' == pointer) { // get x in {A, E, I, O, U} - {A, U}
 						state = "00000"; // disordered, reset. man! I was this close!
 						sequence = ""; // reset
 					}
 				}
 			}
-			
 		}
 		
 		return count;
