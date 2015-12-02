@@ -20,7 +20,7 @@ import java.io.File;
 import java.util.Scanner;
 
 public class AEIOU {
-	static String sequences = ""; // all to store matched sequences
+	static String sequences = ""; // to store all matched sequences (not required by JJ)
 	
 	// load the file, store everything in one string
 	public static String loadData(String fileName) {
@@ -110,7 +110,7 @@ public class AEIOU {
 	public static void main(String[] args) {
 		String fileName = "src/lab21/blah.txt";
 		String str = loadData(fileName);
-		System.out.println("The file blah.txt has \"AEIOU\" in order " + countSeq(str) + " times:");
+		System.out.println("Successfully uncovered " + countSeq(str) + " moles:");
 		System.out.println(sequences);
 	}
 }
