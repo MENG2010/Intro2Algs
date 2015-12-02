@@ -7,11 +7,12 @@ package lab21;
  * 			without hurting any innocent people. Otherwise, our enemy will win!
  * 			All we know about the moles is that
  * 			each of them carries 5 secret energy cubes 'A', 'E', 'I', 'O', and 'U'.
- * 			They are really smart, altering cubes' cases (i.e., case insensitive),
- * 									mixing cubes with non-vowel characters, spaces, numbers, etc..
- * 			The ONLY THING MATTERS is that the 5 cubes must occurs exactly in alphabet order!!!!!
+ * 			The enemies are really smart. They try to hide the cubes by all means,
+ * 				altering cubes' cases (i.e., case insensitive),
+ * 				mixing cubes with non-vowel characters, spaces, numbers, etc..
+ * 			However, there is ONLY one flaw that the 5 cubes occurs EXACTLY in alphabet order!!!!!
  * 
- * 			QUICK!!! Uncover all the moles before it is too late!
+ * 			QUICK!!! Follow the only clue, uncover all the moles before it is too late!
  * 
  ********************************* GAME ON ********************************************
  */
